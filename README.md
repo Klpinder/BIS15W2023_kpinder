@@ -1,1 +1,3 @@
-# BIS15W2023_kpinder
+# Kat's BIS 15L Repository
+## Contact Info
+klpinder@ucdavis.edu

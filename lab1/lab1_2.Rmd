@@ -47,6 +47,14 @@ Order of operations applies and you don't need to add an '=' sign.
 ```{r}
 (4*12)/2
 ```
+Insert code chunk (green square w C) and add code into it
+```{r}
+2*3
+```
+```{r}
+(7*8)/2+5
+```
+
 
 Statistics are what R was originally written for and there are thousands of packages for specialized statistics depending on your needs.  
 
@@ -64,6 +72,11 @@ We can do the same thing for median.
 ```{r}
 median(x)
 ```
+```{r}
+sd(x)
+```
+
+
 
 ## RMarkdown  
 Annotation of code is important for programmers of all levels. When code is annotated, it is easy for others to understand and perhaps more importantly, easier for the person who wrote the code to understand when returning to a project days, months, or even years later. RMarkdown allows us to embed code in annotated chunks, show the results of analyses, and display graphical output all in one file. It is a great way of making a report which can be conveniently output to html or pdf.  
