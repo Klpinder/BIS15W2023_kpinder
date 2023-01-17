@@ -1,0 +1,72 @@
+---
+title: "Lab 3 Warmup"
+author: "Kat Pinder"
+date: "2023-01-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+My Practice
+```{r}
+plant_height <- c(30.7, 37.6,28.4,NA,33.2)
+plant_mass <- c()
+plant_1 <- c(30.7, 4)
+plant_2 <- c(37.6, 5.2)
+plant_3 <- c(28.4, 3.7)
+plant_4 <- c(NA,NA)
+plant_5 <- c(33.2, 4.6)
+plant_data <- c(plant_1, plant_2, plant_3,plant_4, plant_5)
+plant_matrix <- matrix(plant_data, nrow=5, byrow=T)
+plant_title <- c("Plant 1", "Plant 2", "Plant 3", "Plant 4", "Plant 5")
+plant_measurements <- c("Height", "Mass")
+rownames(plant_matrix) <- plant_title
+colnames(plant_matrix) <- plant_measurements
+plant_matrix
+```
+
+height vector
+```{r}
+plant_height <- c(30.7, 37.6,28.4,NA,33.2)
+```
+weight vector
+```{r}
+plant_mass <- c(4, 5.2, 3.7, NA, 4.6)
+```
+matrix labels
+```{r}
+samples <- c("Plant 1", "Plant 2", "Plant 3", "Plant 4", "Plant 5")
+measured <- c("Height", "Mass")
+```
+combine vectors
+```{r}
+plant_experiment <- c(plant_mass, plant_height)
+```
+
+build matrix
+```{r}
+plant_experiment_matrix <- matrix(plant_experiment, nrow=5, byrow=F)
+plant_experiment_matrix
+```
+label
+```{r}
+colnames(plant_experiment_matrix) <- measured
+rownames(plant_experiment_matrix) <- samples
+```
+print matrix
+```{r}
+plant_experiment_matrix
+```
+mean of col
+```{r}
+plant_means <- colMeans(plant_experiment_matrix, na.rm=T)
+plant_means
+```
+add mean col
+```{r}
+plant_experiment_matrix_final <- rbind(plant_experiment_matrix,plant_means)
+plant_experiment_matrix_final
+```
+
