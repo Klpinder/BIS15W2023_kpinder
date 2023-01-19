@@ -1,0 +1,35 @@
+---
+title: "Lab 4 warmup palmer penguins"
+author: "Kat Pinder"
+date: "2023-01-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Load packages
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+#dimensions of penguins
+```{r}
+dim(penguins)
+```
+#names of 'penguins'
+```{r}
+names(penguins)
+```
+#penguins counted by island
+```{r}
+table(penguins$island)
+#168 from Biscoe, 124 from Dream, 52 from Torgersen
+```
+#calculate mean body mass
+```{r}
+body_mass <- penguins$body_mass_g
+mean(body_mass, na.rm=T)
+```
+
