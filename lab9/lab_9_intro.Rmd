@@ -1,0 +1,65 @@
+---
+title: "Lab 9 Intro"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library("jpeg")
+```
+
+## Seating
+1. If you already have a group, it will be helpful to start sitting next to each other.
+2. If you don't have a group, hang tight we are working on it.
+3. Please setup your computer as normal for today.
+
+## Warm-up
+1. In the data folder there is an epidemiology data set on an outbreak of malaria.
+
+2. `rdt` refers to rapid diagnostic test and they are identified here by age group.
+
+3. Make the data tidy and store them as a new object.
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(janitor)
+library(here)
+library(dplyr)
+``` 
+```{r}
+malaria <- read.csv(here("data","malaria.csv"))
+malaria
+```
+```{r}
+malaria2<-malaria%>%
+  separate(data_date, into=c("year","month","day"),sep ="-")%>%
+  separate(submitted_date, into=c("year","month","day"),sep ="-")
+malaria2
+```
+
+```{r}
+malaria_long<-malaria%>%
+  pivot_longer(cols=starts_with("malaria_rdt"),names_to="age_class",values_to="cases")%>%
+  select(newid,data_date,submitted_date,location_name,Province,District,age_class,cases)
+malaria_long
+#select can reorder the columns by the order the columns are listed
+```
+
+4. Which district had the highest *total* number of cases on July 30, 2020?
+```{r}
+malaria2%>%
+  filter(year=="2020", month=="07",day=="30")%>%
+  group_by(District)%>%
+  summarise_at(vars(malaria_tot),list(cases_per_district=sum),na.rm=T)%>%
+  arrange(desc(cases_per_district))
+#Dingo
+#my code's sum do not match ledford's
+```
+```{r}
+malaria_long%>%
+  filter(data_date=="2020-07-30")%>%
+  group_by(District)%>%
+  summarize(tot_cases=sum(cases,na.rm=T))%>%
+  arrange(-tot_cases)
+```
+
